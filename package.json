@@ -7,19 +7,15 @@
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint"
   },
-"dependencies": {
-        "@vue/cli-service": "^5.0.4",
-        "vue": "^2.6.14",
-        "prettier": "2.7.1"
-    },
-    "devDependencies": {
-            },
+  "dependencies": {
+    "@vue/cli-service": "^5.0.4",
+    "vue": "^2.6.14",
+    "prettier": "2.7.1"
+  },
+  "devDependencies": {},
   "description": "vue2 minimum template",
-      "homepage": "https://github.com/wissemb11/vue2-minimum-template",
-    "keywords": [
-        "vue2",
-        "eslint"
-    ],
-    "license": "MIT",
-      "author": "Wissem Boughamoura"
+  "homepage": "https://github.com/wissemb11/vue2-minimum-template",
+  "keywords": ["vue2", "eslint"],
+  "license": "MIT",
+  "author": "Wissem Boughamoura"
 }
