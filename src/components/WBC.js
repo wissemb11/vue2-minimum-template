@@ -90,6 +90,7 @@ let WBC = {
                 rendItem = { ...rendItem, ...props_ };
                 alert(JSON.stringify(rendItem));
                 return h("div", rendItem);
+                +++
             } else if (!wrap_?.includes("~")) {
                 globalWrap = wrap_;
                 // globalWrap = wrap_.replace("~", "");
