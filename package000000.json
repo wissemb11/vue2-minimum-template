@@ -1,0 +1,32 @@
+{
+    "name": "wbc-ui2_v1.0.11_test_project",
+    "version": "1.0.0",
+    "description": "WBC based on Vue2 and served by vue-cli-service",
+    "author": "Wissem Boughamoura",
+    "scripts": {
+        "serve": "vue-cli-service serve"
+    },
+    "main": "src/main.js",
+    "dependencies": {
+        "@vue/cli-service": "^5.0.4",
+        "vue": "^2.6.14",
+        "prettier": "2.7.1"
+    },
+    "devDependencies": {
+            },
+    "bugs": {
+        "url": "https://github.com/wissemb11/vue3-cli-service/issues"
+    },
+    "homepage": "https://github.com/wissemb11/vue3-cli-service#readme",
+    "keywords": [
+        "vue",
+        "vuetify",
+        "component",
+        "json"
+    ],
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/wissemb11/vue3-cli-service.git"
+    }
+}
