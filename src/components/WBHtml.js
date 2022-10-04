@@ -1,4 +1,5 @@
 import { createApp, h, ref, watch, watchEffect, watchSyncEffect } from "vue";
+global.h = h;
 import WBLink from "./WBLink.js";
 import { strToObj, getRandomColor, randomKey } from "./tools.js";
 ///////////////////////Component WBHtml:Component/////////////////////////
@@ -13,13 +14,16 @@ let WBHtml = {
                 let htmlArray = html_.value
                     .replace(/\[\[/g, "**")
                     .replace(/\]\]/g, "**")
+                    .replace(/^\*+/, "")
+                    .replace(/\*+$/, "")
                     .split("**")
                     .map((h) => h.split("|"));
 
+                let theProps = {};
                 let htmlArrayOutput = htmlArray.map((aHtml) => {
                     let theText = aHtml?.[0];
                     let theTo = aHtml?.[2];
-                    let theProps = aHtml?.[1];
+                    theProps = aHtml?.[1];
 
                     if (["null", "undefined"].includes(aHtml[0])) {
                         theText = null;
@@ -30,16 +34,23 @@ let WBHtml = {
                         theProps = strToObj(theProps);
                     }
 
-                    if (theText.includes("<") && theText.includes(">")) {
-                        return h(WBLink, { to: theTo, text: h("span", { innerHTML: theText }), props: theProps });
-                    } else return h(WBLink, { to: theTo, text: theText, props: theProps });
-                });
+                    // if (theText.includes("<") && theText.includes(">")) {
+                    //     return h(WBLink, { to: theTo, text: h("span", theText), props: theProps });
+                    // } else {
 
-                return () => htmlArrayOutput;
+                    return h(WBLink, { props: { to: theTo, text: theText, props: theProps } });
+                    // }
+                });
+                // htmlArrayOutput.innerHTML = "htmlArrayOutput.innerText";
+                if (htmlArrayOutput.length == 1) {
+                    return () => htmlArrayOutput;
+                } else {
+                    return () => h("span", htmlArrayOutput);
+                }
             } else if (html_.value.includes("<") && html_.value.includes(">")) {
                 return () => h("span", { innerHTML: html_.value });
             } else {
-                return () => html_.value;
+                return () => h("span", html_.value);
             }
         }
     },

@@ -4,17 +4,20 @@ import { createApp, h, ref, watch, watchEffect, watchSyncEffect } from "vue";
 let WBLink = {
     // props: ["to", "text", "props"],
     props: { to: null, text: null, props: null },
-    setup({ to, text, props }, context) {
-        const to_ = ref(to);
-        const text_ = ref(text);
-        const props_ = ref(props);
+    setup(props, context) {
+        const to_ = ref(props.to);
+        const text_ = ref(props.text);
+        const props_ = ref(props.props);
 
+        if (text_.value == null) return () => h("li", ["nullllllll", JSON.stringify(props)]);
         // ---------slots setup---------
-        console.log(context.slots);
+
         let slotDefault = context.slots.default?.();
 
         let htmlProp = {};
-        if (props_.value instanceof Object) htmlProp = props_.value;
+        if (props_.value instanceof Object) {
+            htmlProp = props_.value;
+        }
         if (to_.value instanceof Object) {
             htmlProp.to = to_.value;
         } else {
@@ -23,18 +26,18 @@ let WBLink = {
         // ---------The Rendered output---------
         if (!to_.value && text_.value) {
             if (props_.value) {
-                return () => h("span", htmlProp, text_.value);
+                return () => h("span", { attrs: htmlProp }, text_.value);
             } else if (typeof text_.value == "string" && text_.value.includes("<") && text_.value.includes(">")) {
-                return () => h("span", { innerHTML: text_.value });
+                return () => h("span", { attrs: htmlProp, innerHTML: "text_.value" });
             } else {
-                return () => text_.value;
+                return () => h("span", { attrs: htmlProp }, text_.value);
             }
         } else if (typeof to_.value === "string") {
-            return () => h("a", htmlProp, text_.value);
+            return () => h("a", { attrs: htmlProp }, text_.value);
         } else if (to_.value instanceof Object) {
-            return () => h("router-link", htmlProp, text_.value);
+            return () => h("router-link", { attrs: htmlProp }, text_.value);
         } else {
-            return () => text_.value;
+            return () => h("li", text_.value);
         }
     },
 };

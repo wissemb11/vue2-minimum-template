@@ -2,6 +2,8 @@ import Vue from "vue";
 import { h, render } from "vue";
 import App from "./App.vue";
 import WBC from "./components/WBC.js";
+import WBHtml from "./components/WBHtml";
+import WBLink from "./components/WBLink.js";
 
 console.log(3333333, WBC);
 Vue.config.productionTip = false;
@@ -28,9 +30,10 @@ Vue.component("testcomponent", {
     },
 });
 
-Vue.component("test1", {
+Vue.component("test", {
     render() {
-        return h("div", ["Welcome to GeeksforGeeks", "Welcome to GeeksforGeeks", h("b", "Welcome to GeeksforGeeks")]);
+        return h("input", { type: "checkbox", attrs: { type: "checkbox" } });
+        // return h("div", ["Welcome to GeeksforGeeks", "Welcome to GeeksforGeeks", h("b", "Welcome to GeeksforGeeks")]);
     },
     props: {},
 });
@@ -42,6 +45,8 @@ Vue.component("test1", {
     props: {},
 });
 
+Vue.component("WBLink", WBLink);
+Vue.component("WBHtml", WBHtml);
 Vue.component("WBC", WBC);
 
 new Vue({
